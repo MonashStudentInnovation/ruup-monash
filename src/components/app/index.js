@@ -4,22 +4,35 @@ import {
   Router,
   Switch
 } from 'react-router-dom'
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { connect } from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 import HeaderBar from '../HeaderBar';
 import history from './history'
 import HomePage from '../Pages/Home/'
 import Footer from '../containers/Footer/'
-import reducers from '../../reducers';
+import { init as firebaseInit } from './firebase';
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+import * as actions from '../../actions';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    firebaseInit();
+
+    const db = firebase.firestore();
+    db.collection("services").get().then((snapshot) => {
+        snapshot.forEach((doc) => {
+            console.log(`${doc.id}:`);
+            console.log(doc.data())
+        });
+    });
+  }
+
   render() {
     return (
-      <Provider store={createStoreWithMiddleware(reducers)}>
         <Router history={history}>
           <div className="App" style={{display: "flex", flexDirection: "column", height: '100%'}}>
             <HeaderBar />
@@ -31,9 +44,8 @@ class App extends Component {
             <Footer/>
           </div>
         </Router>
-      </Provider>
     );
   }
 }
 
-export default App;
+export default connect(null, actions)(App);
