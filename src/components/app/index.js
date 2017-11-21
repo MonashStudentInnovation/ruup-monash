@@ -23,10 +23,6 @@ class App extends Component {
         <Router history={history}>
           <div className="App" style={{display: "flex", flexDirection: "column", height: '100%'}}>
             <HeaderBar />
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">Welcome to React</h1>
-            </header>
             <div style={{flex: 1}}>
               <Switch>
                 <Route exact path="/" component={HomePage} />
