@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     return (
       <Router history={history}>
-        <div className="App" style={{display: "flex", flexDirection: "column"}}>
+        <div className="App" style={{display: "flex", flexDirection: "column", height: '100%'}}>
           <HeaderBar />
           <header className="App-header">  
             <img src={logo} className="App-logo" alt="logo" />
