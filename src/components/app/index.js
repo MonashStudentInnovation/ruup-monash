@@ -7,7 +7,7 @@ import {
 import logo from './logo.svg';
 import './App.css';
 import history from './history'
-import HomePage from '../components/Pages/Home/'
+import HomePage from '../Pages/Home/'
 class App extends Component {
   render() {
     return (
