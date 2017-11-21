@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.1",
     "firebase": "^4.6.2",
     "material-ui": "^1.0.0-beta.21",
     "material-ui-icons": "^1.0.0-beta.17",

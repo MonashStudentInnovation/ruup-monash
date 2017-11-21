@@ -12,8 +12,6 @@ import history from './history'
 import HomePage from '../Pages/Home/'
 import Footer from '../containers/Footer/'
 import { init as firebaseInit } from './firebase';
-import * as firebase from 'firebase';
-import 'firebase/firestore';
 
 import * as actions from '../../actions';
 
@@ -22,13 +20,7 @@ class App extends Component {
     super(props);
     firebaseInit();
 
-    const db = firebase.firestore();
-    db.collection("services").get().then((snapshot) => {
-        snapshot.forEach((doc) => {
-            console.log(`${doc.id}:`);
-            console.log(doc.data())
-        });
-    });
+    this.props.getServices();
   }
 
   render() {
