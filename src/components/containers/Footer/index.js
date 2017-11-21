@@ -1,11 +1,13 @@
 import React from 'react'
 import Config from '../../../config/'
+import './index.css'
 import {
   Typography,
   Grid
 } from 'material-ui'
 const flexGrow = {
-  flex: '1 1 auto'
+  textAlign: 'left',
+  justifySelf: 'flex-end'
 }
 const footerStyle = {
   padding: '3em', 
@@ -20,7 +22,6 @@ const footerStyle = {
   fontFamily: "Roboto,sans-serif", 
   fontWeight: '10%'
 }
-import './index.css'
 const whiteFont = {
   color: '#ddd',
   fontWeight: 300,
@@ -38,7 +39,7 @@ class Footer extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <Typography as="p" style={whiteFont} gutterBottom>
-                monPlan Private Beta Dashboard - Version {Config.APP_VERSION}
+                { Config.APP_NAME }- Version {Config.APP_VERSION}
               </Typography>
               <Typography as="p" style={whiteFont} gutterBottom>
                 Authorised by: Project Lead, monPlan Team. Maintained by: <a href="https://monplan.github.io" target="_blank" style={{whiteFont}}>monPlan</a> DevOps and Infrastructure
