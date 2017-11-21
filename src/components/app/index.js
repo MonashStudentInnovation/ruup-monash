@@ -32,6 +32,7 @@ class App extends Component {
                 <Route exact path="/" component={HomePage} />
               </Switch>
             </div>
+            <Footer/>
           </div>
         </Router>
       </Provider>
