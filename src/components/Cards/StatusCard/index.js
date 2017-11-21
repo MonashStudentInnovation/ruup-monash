@@ -2,7 +2,8 @@ import React from 'react'
 import {
   Typography,
   Card,
-  CardContent
+  CardContent,
+  Popover
 } from 'material-ui'
 import CloudOKIcon from 'mdi-material-ui/CloudCheck'
 import CloudNotOKIcon from 'mdi-material-ui/CloudOffOutline'
@@ -27,7 +28,7 @@ class QuickStatusCard extends React.Component {
   render(){
     const { status, type, serviceName} = this.props
     return (
-      <Card>
+      <Card style={{textAlign: 'left'}}>
         <CardContent style={{display: 'flex', flexFlow: "row wrap"}}>
           <div style={{flexGrow: 2, alignSelf: "flex-start"}}>
             <Typography type="subheading" gutterBottom style={{color: "#546e7a"}}>
