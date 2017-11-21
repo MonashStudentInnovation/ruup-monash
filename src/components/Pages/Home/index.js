@@ -17,14 +17,15 @@ class HomePage extends React.Component {
           </Grid>
           <Grid item xs={4}>
             <StatusCard
-              status='down'
+              status='outage'
               serviceName='eduroam'
               type='Network'
+              statusMessage='Everything is fucked over here'
               />
           </Grid>
           <Grid item xs={4}>
             <StatusCard
-              status='ok'
+              status='not sure'
               serviceName='eduroam'
               type='Network'
               />
