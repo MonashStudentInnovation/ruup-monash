@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import {
   Grid,
   Typography
@@ -57,6 +58,7 @@ class HomePage extends React.Component {
 
   render(){
     const status = ["OK", "Outage", "Maintenance", "Announcement", "Incident"]
+    console.log(this.props.services);
     return(
       <div style={{padding: '1em'}}>
         <Grid container>
@@ -123,4 +125,8 @@ class HomePage extends React.Component {
   }
 }
 
-export default HomePage
+const mapStateToProps = ({ services }) => ({
+    services
+});
+
+export default connect(mapStateToProps)(HomePage);
