@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import {
   Grid,
   Typography
@@ -6,6 +7,7 @@ import {
 import StatusCard from '../../Cards/StatusCard'
 class HomePage extends React.Component {
   render(){
+    console.log(this.props.services);
     return(
       <div style={{padding: '1em'}}>
         <Grid container>
@@ -56,4 +58,8 @@ class HomePage extends React.Component {
   }
 }
 
-export default HomePage
+const mapStateToProps = ({ services }) => ({
+    services
+});
+
+export default connect(mapStateToProps)(HomePage);
