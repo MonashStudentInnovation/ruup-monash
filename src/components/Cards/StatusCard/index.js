@@ -11,6 +11,13 @@ import CloudNotOKIcon from 'mdi-material-ui/CloudOffOutline'
 import CloudIcon from 'mdi-material-ui/CloudOutline'
 import { withStyles } from 'material-ui/styles'
 
+
+import CheckIcon from 'mdi-material-ui/CheckCircle'
+import MaintenanceIcon from 'mdi-material-ui/Wrench'
+import IncidentIcon from 'mdi-material-ui/Alert'
+import FlagIcon from 'mdi-material-ui/Flag'
+import OutageIcon from 'mdi-material-ui/MinusCircle'
+
 const iconStyle = {
   verticalAlign: 'center', 
   width: 35, 
@@ -49,13 +56,28 @@ class QuickStatusCard extends React.Component {
   statusIcon(status){
     switch(status){
       case "ok":
-        return <CloudOKIcon 
+        return <CheckIcon 
           style={{...iconStyle, color: "#4caf50"}}
           onMouseOver={this.handlePopoverOpen} 
           onMouseOut={this.handlePopoverClose}/>
       case "outage":
-        return <CloudNotOKIcon 
+        return <OutageIcon 
           style={{...iconStyle, color: "#d32f2f"}}
+          onMouseOver={this.handlePopoverOpen} 
+          onMouseOut={this.handlePopoverClose}/>
+      case "maintenance":
+        return <MaintenanceIcon 
+          style={{...iconStyle, color: "#303f9f"}}
+          onMouseOver={this.handlePopoverOpen} 
+          onMouseOut={this.handlePopoverClose}/>
+      case "announcement":
+        return <FlagIcon 
+          style={{...iconStyle, color: "#ff5722"}}
+          onMouseOver={this.handlePopoverOpen} 
+          onMouseOut={this.handlePopoverClose}/>
+      case "incident":
+        return <IncidentIcon 
+          style={{...iconStyle, color: "#ffeb3b"}}
           onMouseOver={this.handlePopoverOpen} 
           onMouseOut={this.handlePopoverClose}/>
       default:
@@ -73,6 +95,12 @@ class QuickStatusCard extends React.Component {
         return "Everything is OK!!!"
       case "outage":
         return "We know something is broken! Our team is looking at it!"
+      case 'maintenance':
+        return "Our Services are currently under maintenance, we will be back with you soon"
+      case 'incident':
+        return "We currently investigating issues"
+      case 'announcement':
+        return 'There is something planned or going to happen please read more about it in our announcements'
       default:
         return "We are not sure what is happening, but we will get back to you ASAP!"
     }
@@ -96,6 +124,9 @@ class QuickStatusCard extends React.Component {
             {this.statusIcon(status)}
           </div>
       
+        </CardContent>
+        <CardContent>
+          {status}
         </CardContent>
         <Popover
           className={classes.popover}
