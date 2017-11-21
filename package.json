@@ -13,7 +13,11 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
     "redux": "^3.7.2",
+<<<<<<< aa1cafc0b007c970824997990c0ffdf159d53af5
     "typeface-roboto": "^0.0.45"
+=======
+    "redux-thunk": "^2.2.0"
+>>>>>>> Basic redux setup
   },
   "scripts": {
     "start": "react-scripts start",
