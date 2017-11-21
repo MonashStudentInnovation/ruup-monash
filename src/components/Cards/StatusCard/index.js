@@ -6,9 +6,6 @@ import {
   CardContent,
   Popover
 } from 'material-ui'
-import CloudOKIcon from 'mdi-material-ui/CloudCheck'
-import CloudNotOKIcon from 'mdi-material-ui/CloudOffOutline'
-import CloudIcon from 'mdi-material-ui/CloudOutline'
 import { withStyles } from 'material-ui/styles'
 
 
@@ -17,6 +14,7 @@ import MaintenanceIcon from 'mdi-material-ui/Wrench'
 import IncidentIcon from 'mdi-material-ui/Alert'
 import FlagIcon from 'mdi-material-ui/Flag'
 import OutageIcon from 'mdi-material-ui/MinusCircle'
+import CloudIcon from 'mdi-material-ui/CloudOutline'
 
 const iconStyle = {
   verticalAlign: 'center', 
