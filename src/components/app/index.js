@@ -10,6 +10,7 @@ import './App.css';
 import HeaderBar from '../HeaderBar';
 import history from './history'
 import HomePage from '../Pages/Home/'
+import AdminPage from '../Pages/Admin'
 import Footer from '../containers/Footer/'
 import { init as firebaseInit } from './firebase';
 
@@ -31,6 +32,7 @@ class App extends Component {
             <div style={{flex: 1}}>
               <Switch>
                 <Route exact path="/" component={HomePage} />
+                <Route path="/admin" component={AdminPage} />
               </Switch>
             </div>
             <Footer/>
