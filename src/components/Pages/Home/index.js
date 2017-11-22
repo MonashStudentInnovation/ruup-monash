@@ -2,10 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux';
 import {
   Grid,
+  CircularProgress,
   Typography
 } from 'material-ui'
 import StatusCard from '../../Cards/StatusCard'
-
+import IncidentCard from '../../Cards/IncidentCard'
 import CheckIcon from 'mdi-material-ui/CheckCircle'
 import MaintenanceIcon from 'mdi-material-ui/Wrench'
 import IncidentIcon from 'mdi-material-ui/Alert'
@@ -57,7 +58,8 @@ class HomePage extends React.Component {
   }
 
   renderCards() {
-    return this.props.services.map(({ id, name, type, status }) => (
+    const { services } = this.props
+    return services.map(({ id, name, type, status }) => (
         <Grid key={id} item xs={4}>
           <StatusCard
               serviceName={name}
@@ -67,35 +69,79 @@ class HomePage extends React.Component {
         </Grid>
     ));
   }
-
-  render(){
+  
+  renderHeader(){
     const status = ["OK", "Outage", "Maintenance", "Announcement", "Incident"]
+    return <Grid item xs={12} style={{backgroundColor: '#ececec', padding: '1em'}}>
+    <Grid container style={{width: "100%", flexDirection: 'row',textAlign: 'left'}}>
+      <Grid item xs={4}>
+        <Typography type="headline">
+          Our Services
+        </Typography>
+      </Grid>
+      <Grid item xs={8}>
+        <Grid container style={{flexDirection: 'row-reverse'}}>
+          {
+            status.reverse().map((value, key) => {
+              return  <Grid item xs={2} style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                        <div style={{marginRight: '10px'}}>{this.statusIcon(value.toLowerCase())}</div>
+                        <div> {value} </div>
+                      </Grid>
+            })
+          }
+        </Grid>
+      </Grid>
+    </Grid>
+  </Grid>
+  }
+
+  renderIncidents(){
+    return (
+      <Grid container style={{backgroundColor: "#ccc", width: "100%", flexDirection: 'row',textAlign: 'left'}}>
+      </Grid>
+    )
+  }
+  render(){
+    const { services } = this.props 
     console.log(this.props.services);
     return(
-      <div style={{padding: '1em'}}>
-        <Grid container>
-          <Grid item xs={12} style={{backgroundColor: '#ececec'}}>
-            <Grid container style={{width: "100%", flexDirection: 'row',textAlign: 'left'}}>
+      <div style={{padding: '1em', minHeight: '100%'}}>
+        <Grid container style={{minHeight: '100%', marginBottom: '2em'}} alignItems="center">
+          {this.renderHeader()}
+          {
+            services.length != 0 ?
+            this.renderCards():
+            <Grid item xs={12} style={{height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+              <CircularProgress size={100} />
+              <Typography type="title">
+                Loading the Service Status for the First Time...
+              </Typography>
+            </Grid>
+
+          }
+        </Grid>
+        <Grid container style={{minHeight: '100%', backgroundColor: '#eee', textAlign: 'left', padding: '1em'}}>
+          <Grid item xs={12}>
+            <Typography type="headline">
+              Past Incidents
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Grid container>
               <Grid item xs={4}>
-                <Typography type="headline">
-                  Our Services
-                </Typography>
-              </Grid>
-              <Grid item xs={8}>
-                <Grid container style={{flexDirection: 'row-reverse'}}>
-                  {
-                    status.reverse().map((value, key) => {
-                      return  <Grid item xs={2} style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                                <div style={{marginRight: '10px'}}>{this.statusIcon(value.toLowerCase())}</div>
-                                <div> {value} </div>
-                              </Grid>
-                    })
-                  }
-                </Grid>
+                <IncidentCard 
+                  incidentDate="November 21, 2017"
+                  incidentTime="12:16 PM AEST" 
+                  title="Connectivity Issues with eduroam in Engineering Building" 
+                  affectedServices={["Eduroam"]} 
+                  status="Resolved" 
+                  type="outage" 
+                  description="We've received reports that some folks working in the Engieering Building are running into trouble with connectivity and making calls. We are currently investigating this as we speak. We're very sorry for the disruption."
+                  />
               </Grid>
             </Grid>
           </Grid>
-          {this.renderCards()}
         </Grid>
       </div>
     )
