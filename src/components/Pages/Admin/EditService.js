@@ -16,6 +16,7 @@ import IncidentIcon from 'mdi-material-ui/Alert'
 import FlagIcon from 'mdi-material-ui/Flag'
 import OutageIcon from 'mdi-material-ui/MinusCircle'
 import CloudIcon from 'mdi-material-ui/CloudOutline'
+import * as actions from '../../../actions'
 
 const iconStyle = {
     verticalAlign: 'center',
@@ -26,7 +27,7 @@ const iconStyle = {
 class EditServiceDialog extends React.Component {
     state = {
         open: false,
-        application: '',
+        status: '',
         service: '-'
     };
 
@@ -79,16 +80,21 @@ class EditServiceDialog extends React.Component {
 
     renderServices() {
         const { services } = this.props;
-        return services.map(({ id, name }) => {
+        return services.map((service, key) => {
             return (
-                <MenuItem value={id}>
-                    {name}
+                <MenuItem value={service.id} key={key}>
+                    {service.name}
                 </MenuItem>
             );
         });
     }
-
+    handleSubmit(){
+        console.log(this.state)
+        const { updateService } = this.props;
+        updateService(this.state.service, {status: this.state.status.toLowerCase()});
+    }
     render(){
+        const statusCodes = ["OK", "Outage", "Maintenance", "Announcement", "Incident"]
         return (
             <div>
                 <Button raised onClick={this.handleClickOpen}>Edit an incident</Button>
@@ -98,23 +104,43 @@ class EditServiceDialog extends React.Component {
                         <FormControl>
                             <InputLabel htmlFor="service-simple">Service</InputLabel>
                             <Select
-                                native
                                 value={this.state.service}
                                 onChange={this.handleChange('service')}
                                 input={<Input id="service-simple" />}
                             >
-                                <MenuItem value="-">
-                                    <em>None</em>
-                                </MenuItem>
                                 {this.renderServices()}
                             </Select>
+                        </FormControl>
+                    </DialogContent>
+                    <DialogContent>
+                        <FormControl>
+                            <InputLabel htmlFor="service-simple">Status</InputLabel>
+                            <Select
+                                value={this.state.status}
+                                onChange={this.handleChange('status')}
+                                input={<Input id="service-simple" />}
+                                disabled={!!!this.state.service}
+                                style={{minWidth: 300}}
+                            >
+                            {
+                                 statusCodes.map((status, key) => {
+                                    return (
+                                        <MenuItem value={status} key={key}>
+                                            {status}
+                                        </MenuItem>
+                                    );
+                                })
+
+                            }
+                            </Select>
+                            
                         </FormControl>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleRequestClose} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={this.handleRequestClose} color="primary">
+                        <Button onClick={this.handleSubmit.bind(this)} color="primary">
                             OK
                         </Button>
                     </DialogActions>
@@ -128,4 +154,4 @@ const mapStateToProps = ({ services }) => ({
     services
 });
 
-export default connect(mapStateToProps)(EditServiceDialog)
+export default connect(mapStateToProps, actions)(EditServiceDialog)
