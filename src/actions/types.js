@@ -1,1 +1,2 @@
 export const GET_SERVICES = "GET_SERVICES";
+export const GET_INCIDENTS = "GET_INCIDENTS";

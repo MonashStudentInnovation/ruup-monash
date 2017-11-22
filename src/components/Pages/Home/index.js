@@ -94,6 +94,34 @@ class HomePage extends React.Component {
   </Grid>
   }
 
+  renderIncidents(incidents) {
+    return incidents.map(({ id, date, time, title, affectedServices, status, type, description }) => (
+          <Grid key={id} item xs={4}>
+            <IncidentCard
+                incidentDate={date}
+                incidentTime={time}
+                title={title}
+                affectedServices={affectedServices}
+                status={status}
+                type={type}
+                description={description}
+            />
+          </Grid>
+      ));
+  }
+
+  renderCurrentincidents() {
+    const { incidents } = this.props;
+    const currentIncidents = incidents.filter(incident => !incident.isPast);
+    return this.renderIncidents(currentIncidents);
+  }
+
+  renderPastIncidents() {
+    const { incidents } = this.props;
+    const pastIncidents = incidents.filter(incident => incident.isPast);
+    return this.renderIncidents(pastIncidents);
+  }
+
   render(){
     const { services } = this.props 
     console.log(this.props.services);
@@ -122,17 +150,7 @@ class HomePage extends React.Component {
 
           <Grid item xs={12}>
             <Grid container>
-              <Grid item xs={4}>
-                <IncidentCard 
-                  incidentDate="November 22, 2017"
-                  incidentTime="6:00 PM AEST" 
-                  title="Callista Production scheduled maintenance outage from 6pm to 10pm Wednesday 22nd November 2017 (AEDT)" 
-                  affectedServices={["CALLISTA", "HUUVI"]} 
-                  status="Ongoing" 
-                  type="announcement" 
-                  description="Callista outage for 6pm to 10pm Wednesday 22nd November 2017 (AEDT). During this time Callista will be unavailable, please be aware of the downtime window and plan your work accordingly."
-                  />
-              </Grid>
+                {this.renderCurrentincidents()}
             </Grid>
           </Grid>
         </Grid>
@@ -145,17 +163,7 @@ class HomePage extends React.Component {
 
           <Grid item xs={12}>
             <Grid container>
-              <Grid item xs={4}>
-                <IncidentCard 
-                  incidentDate="November 21, 2017"
-                  incidentTime="12:16 PM AEST" 
-                  title="Connectivity Issues with eduroam in Engineering Building" 
-                  affectedServices={["Eduroam"]} 
-                  status="Resolved" 
-                  type="outage" 
-                  description="We've received reports that some folks working in the Engieering Building are running into trouble with connectivity and making calls. We are currently investigating this as we speak. We're very sorry for the disruption."
-                  />
-              </Grid>
+              {this.renderPastIncidents()}
             </Grid>
           </Grid>
         </Grid>
@@ -164,8 +172,9 @@ class HomePage extends React.Component {
   }
 }
 
-const mapStateToProps = ({ services }) => ({
-    services
+const mapStateToProps = ({ services, incidents }) => ({
+    services,
+    incidents
 });
 
 export default connect(mapStateToProps)(HomePage);
