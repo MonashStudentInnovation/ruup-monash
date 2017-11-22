@@ -56,6 +56,18 @@ class HomePage extends React.Component {
     }
   }
 
+  renderCards() {
+    return this.props.services.map(({ id, name, type, status }) => (
+        <Grid key={id} item xs={4}>
+          <StatusCard
+              serviceName={name}
+              type={type}
+              status={status}
+          />
+        </Grid>
+    ));
+  }
+
   render(){
     const status = ["OK", "Outage", "Maintenance", "Announcement", "Incident"]
     console.log(this.props.services);
@@ -83,42 +95,7 @@ class HomePage extends React.Component {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={4}>
-            <StatusCard
-              status='ok'
-              serviceName='eduroam'
-              type='Network'
-              />
-          </Grid>
-          <Grid item xs={4}>
-            <StatusCard
-              status='outage'
-              serviceName='eduroam'
-              type='Network'
-              statusMessage='Everything is fucked over here'
-              />
-          </Grid>
-          <Grid item xs={4}>
-            <StatusCard
-              status='incident'
-              serviceName='eduroam'
-              type='Network'
-              />
-          </Grid>
-          <Grid item xs={4}>
-            <StatusCard
-              status='maintenance'
-              serviceName='eduroam'
-              type='Network'
-              />
-          </Grid>
-          <Grid item xs={4}>
-            <StatusCard
-              status='announcement'
-              serviceName='eduroam'
-              type='Network'
-              />
-          </Grid>
+          {this.renderCards()}
         </Grid>
       </div>
     )
