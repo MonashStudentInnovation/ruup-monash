@@ -41,7 +41,7 @@ class App extends Component {
             <div style={{flex: 1}}>
               <Switch>
                 <Route exact path="/" component={HomePage} />
-                <Route path="/admin" component={AdminPage} />
+                <Route path="/ah/_admin" component={AdminPage} />
               </Switch>
             </div>
             <Footer/>

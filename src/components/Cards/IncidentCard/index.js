@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   Card,
+  Chip,
   CardContent,
   Typography
 } from 'material-ui'
@@ -18,6 +19,11 @@ const iconStyle = {
   verticalAlign: 'center', 
   width: 35, 
   height: 35
+}
+
+const rowStyle ={
+  display: 'flex',
+  flexWrap: 'wrap',
 }
 
 
@@ -72,6 +78,13 @@ class IncidentCard extends React.Component {
           <Typography type="headline">
             {title}
           </Typography>
+        </CardContent>
+        <CardContent style={rowStyle}>
+          {
+            affectedServices.map((service, key) => {
+              return <Chip label={service} style={{margin: '1px'}}/>
+            })
+          }
         </CardContent>
         <CardContent>
           <Typography type="body2">
