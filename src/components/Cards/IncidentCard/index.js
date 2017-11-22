@@ -26,27 +26,27 @@ class IncidentCard extends React.Component {
     switch(status){
       case "ok":
         return <CheckIcon 
-          style={{...iconStyle, color: "#4caf50"}}
+          style={{...iconStyle, color: "#39c49e"}}
           onMouseOver={this.handlePopoverOpen} 
           onMouseOut={this.handlePopoverClose}/>
       case "outage":
         return <OutageIcon 
-          style={{...iconStyle, color: "#d32f2f"}}
+          style={{...iconStyle, color: "#eb4d5c"}}
           onMouseOver={this.handlePopoverOpen} 
           onMouseOut={this.handlePopoverClose}/>
       case "maintenance":
         return <MaintenanceIcon 
-          style={{...iconStyle, color: "#303f9f"}}
+          style={{...iconStyle, color: "#3f46ad"}}
           onMouseOver={this.handlePopoverOpen} 
           onMouseOut={this.handlePopoverClose}/>
       case "announcement":
         return <FlagIcon 
-          style={{...iconStyle, color: "#ff5722"}}
+          style={{...iconStyle, color: "#ff944b"}}
           onMouseOver={this.handlePopoverOpen} 
           onMouseOut={this.handlePopoverClose}/>
       case "incident":
         return <IncidentIcon 
-          style={{...iconStyle, color: "#ffeb3b"}}
+          style={{...iconStyle, color: "#eeb522"}}
           onMouseOver={this.handlePopoverOpen} 
           onMouseOut={this.handlePopoverClose}/>
       default:

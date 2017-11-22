@@ -16,8 +16,8 @@ import CloudIcon from 'mdi-material-ui/CloudOutline'
 
 const iconStyle = {
   verticalAlign: 'center', 
-  width: 35, 
-  height: 35
+  width: 20, 
+  height: 20
 }
 
 
@@ -26,27 +26,27 @@ class HomePage extends React.Component {
     switch(status){
       case "ok":
         return <CheckIcon 
-          style={{...iconStyle, color: "#4caf50"}}
+          style={{...iconStyle, color: "#39c49e"}}
           onMouseOver={this.handlePopoverOpen} 
           onMouseOut={this.handlePopoverClose}/>
       case "outage":
         return <OutageIcon 
-          style={{...iconStyle, color: "#d32f2f"}}
+          style={{...iconStyle, color: "#eb4d5c"}}
           onMouseOver={this.handlePopoverOpen} 
           onMouseOut={this.handlePopoverClose}/>
       case "maintenance":
         return <MaintenanceIcon 
-          style={{...iconStyle, color: "#303f9f"}}
+          style={{...iconStyle, color: "#3f46ad"}}
           onMouseOver={this.handlePopoverOpen} 
           onMouseOut={this.handlePopoverClose}/>
       case "announcement":
         return <FlagIcon 
-          style={{...iconStyle, color: "#ff5722"}}
+          style={{...iconStyle, color: "#ff944b"}}
           onMouseOver={this.handlePopoverOpen} 
           onMouseOut={this.handlePopoverClose}/>
       case "incident":
         return <IncidentIcon 
-          style={{...iconStyle, color: "#ffeb3b"}}
+          style={{...iconStyle, color: "#eeb522"}}
           onMouseOver={this.handlePopoverOpen} 
           onMouseOut={this.handlePopoverClose}/>
       default:
@@ -72,10 +72,10 @@ class HomePage extends React.Component {
   
   renderHeader(){
     const status = ["OK", "Outage", "Maintenance", "Announcement", "Incident"]
-    return <Grid item xs={12} style={{backgroundColor: '#ececec', padding: '1em'}}>
+    return <Grid item xs={12} style={{backgroundColor: '#fff', padding: '1em'}}>
     <Grid container style={{width: "100%", flexDirection: 'row',textAlign: 'left'}}>
       <Grid item xs={4}>
-        <Typography type="headline">
+        <Typography type="headline" style={{fontWeight:500}}>
           Our Services
         </Typography>
       </Grid>
@@ -83,9 +83,9 @@ class HomePage extends React.Component {
         <Grid container style={{flexDirection: 'row-reverse'}}>
           {
             status.reverse().map((value, key) => {
-              return  <Grid item xs={2} style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                        <div style={{marginRight: '10px'}}>{this.statusIcon(value.toLowerCase())}</div>
-                        <div> {value} </div>
+              return  <Grid item xs={2} style={{display: 'flex', flexDirection: 'row', justifyContent: 'left', alignItems: 'center', paddingTop:'12px'}}>
+                        <div style={{marginRight: '2px'}}>{this.statusIcon(value.toLowerCase())}</div>
+                        <div style={{fontSize:'14px', fontWeight:300, paddingBottom: '0.2em'}}> {value} </div>
                       </Grid>
             })
           }
