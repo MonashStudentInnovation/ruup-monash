@@ -123,9 +123,6 @@ class QuickStatusCard extends React.Component {
           </div>
       
         </CardContent>
-        <CardContent>
-          {status}
-        </CardContent>
         <Popover
           className={classes.popover}
           classes={{
