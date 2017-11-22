@@ -43,7 +43,7 @@ class HeaderBar extends React.Component {
           <Toolbar>
           <img style={{height: "2.5em"}} src={StatusIcon} />
             <Typography className={classes.menuText} type="title">
-              Ruup
+              Ruup | Monash
             </Typography>
               <div>
                 <Menu

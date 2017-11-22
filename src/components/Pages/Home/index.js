@@ -141,7 +141,7 @@ class HomePage extends React.Component {
 
           }
         </Grid>
-        <Grid container style={{minHeight: '100%', backgroundColor: '#eee', textAlign: 'left', padding: '1em'}}>
+        <Grid container style={{minHeight: '100%', backgroundColor: '#eee', textAlign: 'left', padding: '1em', marginBottom: '10px'}}>
           <Grid item xs={12}>
             <Typography type="headline">
               Current Incidents
