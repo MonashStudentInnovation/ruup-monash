@@ -21,7 +21,16 @@ class App extends Component {
     super(props);
     firebaseInit();
 
-    this.props.getServices();
+    const { getServices, updateService } = this.props;
+    getServices();
+    // setTimeout(() => {
+    //   console.log("UPDATING?");
+    //     updateService("ncfFDC9OYHNqVhhLiPXr", {
+    //         name: "e-forms",
+    //         type: "Network",
+    //         status: "ok"
+    //     });
+    // }, 5000)
   }
 
   render() {
