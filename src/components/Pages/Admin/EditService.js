@@ -23,7 +23,7 @@ const iconStyle = {
     height: 35
 }
 
-class CreateNewIncidentDialog extends React.Component {
+class EditServiceDialog extends React.Component {
     state = {
         open: false,
         application: '',
@@ -96,7 +96,7 @@ class CreateNewIncidentDialog extends React.Component {
                     <DialogTitle>Select Incident Type</DialogTitle>
                     <DialogContent>
                         <FormControl>
-                            <InputLabel htmlFor="status-simple">Service</InputLabel>
+                            <InputLabel htmlFor="service-simple">Service</InputLabel>
                             <Select
                                 native
                                 value={this.state.service}
@@ -128,4 +128,4 @@ const mapStateToProps = ({ services }) => ({
     services
 });
 
-export default connect(mapStateToProps)(CreateNewIncidentDialog)
+export default connect(mapStateToProps)(EditServiceDialog)

@@ -4,7 +4,7 @@ import {
   Typography
 } from 'material-ui'
 import CreateNewIncident from './CreateNewIncident'
-import EditIncident from './EditIncident'
+import EditIncident from './EditService'
 
 class AdminPage extends React.Component {
   
