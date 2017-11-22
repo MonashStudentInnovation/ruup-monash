@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import {
   Button,
   Dialog,
@@ -15,13 +16,8 @@ import {
 import {
   withStyles
 } from 'material-ui/styles'
-import CheckIcon from 'mdi-material-ui/CheckCircle'
-import MaintenanceIcon from 'mdi-material-ui/Wrench'
-import IncidentIcon from 'mdi-material-ui/Alert'
-import FlagIcon from 'mdi-material-ui/Flag'
-import OutageIcon from 'mdi-material-ui/MinusCircle'
-import CloudIcon from 'mdi-material-ui/CloudOutline'
 import Moment from 'moment'
+import * as actions from '../../../actions';
 
 
 const iconStyle = {
@@ -67,6 +63,21 @@ class CreateNewIncidentDialog extends React.Component {
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
   };
+
+  handleSubmit() {
+    const { description, service, serviceDate, status, title } = this.state;
+    const time = `${serviceDate.format('HH:mm A')} AEST`;
+    this.props.createIncident({
+        affectedServices: [service],
+        date: serviceDate.format('MMM DD, YYYY'),
+        description,
+        isPast: false,
+        status,
+        time,
+        title,
+        type: "announcement"
+    });
+  }
 
   render(){
     const statusCodes = ["OK", "Outage", "Maintenance", "Announcement", "Incident"]
@@ -147,8 +158,8 @@ class CreateNewIncidentDialog extends React.Component {
               />
           </DialogContent>
           <DialogActions>
-              <Button onClick={()=>{this.handleRequestClose()}}>Cancel</Button>
-              <Button >Open</Button>
+              <Button onClick={this.handleRequestClose}>Cancel</Button>
+              <Button onClick={this.handleSubmit.bind(this)}>Submit</Button>
           </DialogActions>
         </Dialog>
       </div>
@@ -156,4 +167,4 @@ class CreateNewIncidentDialog extends React.Component {
   }
 }
 
-export default withStyles(styles)(CreateNewIncidentDialog)
+export default connect(null, actions)(withStyles(styles)(CreateNewIncidentDialog));
