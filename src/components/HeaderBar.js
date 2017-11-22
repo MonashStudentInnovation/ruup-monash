@@ -24,8 +24,11 @@ const styles = theme => ({
     marginRight: 20,
   },
   menuText: {
-    color: '#025a9e',
-    fontSize: '1em'
+    color: '#555',
+    fontSize: '2em',
+    fontWeight: '700',
+    fontStyle: 'italic',
+    marginLeft: '0.1em'
   }
 });
 
@@ -36,19 +39,13 @@ class HeaderBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar style={{backgroundColor: "#fff"}} position="static">
+        <AppBar style={{backgroundColor: "#fff", boxShadow: "none", borderBottom: "1px solid #ddd"}} position="static">
           <Toolbar>
-          <img style={{height: "1.5em"}} src={StatusIcon} />
+          <img style={{height: "2.5em"}} src={StatusIcon} />
             <Typography className={classes.menuText} type="title">
-              RUUP
+              Ruup
             </Typography>
               <div>
-                <IconButton
-                  onClick={this.handleMenu}
-                  color="default"
-                >
-                  <AccountCircle />
-                </IconButton>
                 <Menu
                   id="menu-appbar"
                   anchorOrigin={{
