@@ -6,7 +6,7 @@ import {
   Typography
 } from 'material-ui'
 import StatusCard from '../../Cards/StatusCard'
-
+import IncidentCard from '../../Cards/IncidentCard'
 import CheckIcon from 'mdi-material-ui/CheckCircle'
 import MaintenanceIcon from 'mdi-material-ui/Wrench'
 import IncidentIcon from 'mdi-material-ui/Alert'
@@ -94,12 +94,19 @@ class HomePage extends React.Component {
     </Grid>
   </Grid>
   }
+
+  renderIncidents(){
+    return (
+      <Grid container style={{backgroundColor: "#ccc", width: "100%", flexDirection: 'row',textAlign: 'left'}}>
+      </Grid>
+    )
+  }
   render(){
     const { services } = this.props 
     console.log(this.props.services);
     return(
       <div style={{padding: '1em', minHeight: '100%'}}>
-        <Grid container style={{minHeight: '100%'}} alignItems="center">
+        <Grid container style={{minHeight: '100%', marginBottom: '2em'}} alignItems="center">
           {this.renderHeader()}
           {
             services.length != 0 ?
@@ -112,6 +119,29 @@ class HomePage extends React.Component {
             </Grid>
 
           }
+        </Grid>
+        <Grid container style={{minHeight: '100%', backgroundColor: '#eee', textAlign: 'left', padding: '1em'}}>
+          <Grid item xs={12}>
+            <Typography type="headline">
+              Past Incidents
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Grid container>
+              <Grid item xs={4}>
+                <IncidentCard 
+                  incidentDate="November 21, 2017"
+                  incidentTime="12:16 PM AEST" 
+                  title="Connectivity Issues with eduroam in Engineering Building" 
+                  affectedServices={["Eduroam"]} 
+                  status="Resolved" 
+                  type="outage" 
+                  description="We've received reports that some folks working in the Engieering Building are running into trouble with connectivity and making calls. We are currently investigating this as we speak. We're very sorry for the disruption."
+                  />
+              </Grid>
+            </Grid>
+          </Grid>
         </Grid>
       </div>
     )
