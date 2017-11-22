@@ -39,3 +39,18 @@ export function updateService(id, value) {
     }
 }
 
+export function createService(value) {
+    return (dispatch) => {
+        const db = firebase.firestore();
+
+        db.collection("services")
+            .add(value)
+            .then(() => {
+                console.log("add done!");
+            })
+            .catch(e => {
+                console.log("add failed!");
+            })
+    }
+}
+
