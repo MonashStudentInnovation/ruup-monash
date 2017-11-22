@@ -98,7 +98,6 @@ class EditServiceDialog extends React.Component {
                         <FormControl>
                             <InputLabel htmlFor="service-simple">Service</InputLabel>
                             <Select
-                                native
                                 value={this.state.service}
                                 onChange={this.handleChange('service')}
                                 input={<Input id="service-simple" />}

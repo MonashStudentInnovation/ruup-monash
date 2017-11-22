@@ -41,3 +41,18 @@ export function updateIncident(id, value) {
     }
 }
 
+export function createIncident(value) {
+    return (dispatch) => {
+        const db = firebase.firestore();
+
+        db.collection("incidents")
+            .add(value)
+            .then(() => {
+                console.log("add done!");
+            })
+            .catch(e => {
+                console.log("add failed!");
+            })
+    }
+}
+
