@@ -4,7 +4,7 @@ import {
   Typography
 } from 'material-ui'
 import CreateNewIncident from './CreateNewIncident'
-import EditIncident from './EditService'
+import EditService from './EditService'
 
 class AdminPage extends React.Component {
   
@@ -24,7 +24,7 @@ class AdminPage extends React.Component {
               <Typography type="headline">
                   Edit a Service
               </Typography>
-              <EditIncident />
+              <EditService />
           </Grid>
       </Grid>
       </div>
