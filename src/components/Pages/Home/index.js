@@ -20,7 +20,6 @@ const iconStyle = {
   height: 35
 }
 
-
 class HomePage extends React.Component {
   statusIcon(status){
     switch(status){
@@ -95,12 +94,6 @@ class HomePage extends React.Component {
   </Grid>
   }
 
-  renderIncidents(){
-    return (
-      <Grid container style={{backgroundColor: "#ccc", width: "100%", flexDirection: 'row',textAlign: 'left'}}>
-      </Grid>
-    )
-  }
   render(){
     const { services } = this.props 
     console.log(this.props.services);
@@ -119,6 +112,29 @@ class HomePage extends React.Component {
             </Grid>
 
           }
+        </Grid>
+        <Grid container style={{minHeight: '100%', backgroundColor: '#eee', textAlign: 'left', padding: '1em'}}>
+          <Grid item xs={12}>
+            <Typography type="headline">
+              Current Incidents
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Grid container>
+              <Grid item xs={4}>
+                <IncidentCard 
+                  incidentDate="November 22, 2017"
+                  incidentTime="6:00 PM AEST" 
+                  title="Callista Production scheduled maintenance outage from 6pm to 10pm Wednesday 22nd November 2017 (AEDT)" 
+                  affectedServices={["CALLISTA", "HUUVI"]} 
+                  status="Ongoing" 
+                  type="announcement" 
+                  description="Callista outage for 6pm to 10pm Wednesday 22nd November 2017 (AEDT). During this time Callista will be unavailable, please be aware of the downtime window and plan your work accordingly."
+                  />
+              </Grid>
+            </Grid>
+          </Grid>
         </Grid>
         <Grid container style={{minHeight: '100%', backgroundColor: '#eee', textAlign: 'left', padding: '1em'}}>
           <Grid item xs={12}>
